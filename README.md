@@ -24,7 +24,9 @@
     mkdir db_data
     docker-compose up
 (after downloading and building the env please kill the container)
+
     docker-compose up
+
 (it should migrate after all)
 
 go visit localhost:8080 to see if everything setup completely
