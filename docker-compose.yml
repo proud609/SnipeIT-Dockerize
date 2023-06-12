@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    image: snipe/snipe-it:v6.1.0
+    env_file:
+      - ./.env
+    volumes:
+      - ./snipeit-vol:/var/lib/snipeit
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ./snipeit-sql/.
+    env_file:
+      - ./.env
+    volumes:
+      - ./db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    restart: always
+volumes:
+  snipesql-vol:
+
+
+
