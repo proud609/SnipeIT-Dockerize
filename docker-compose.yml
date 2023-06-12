@@ -11,19 +11,27 @@ services:
       - "8080:80"
     depends_on:
       - mysql
+    links:
+      - mysql:mysql
+    restart: always
 
   mysql:
-    build: ./snipeit-sql/.
+    image: mysql:5.6
     env_file:
       - ./.env
     volumes:
-      - ./db_data:/var/lib/mysql
+      - dc-snipesql-vol:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
-    restart: always
+    expose:
+      - "3306"
+
+  
+
 volumes:
-  snipesql-vol:
+  dc-snipesql-vol:
+
 
 
 
